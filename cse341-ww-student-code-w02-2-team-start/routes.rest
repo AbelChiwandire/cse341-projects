@@ -1,0 +1,73 @@
+### =====================================================
+### Temple API Tests
+### =====================================================
+
+@host = http://localhost:8080
+@apiKey = Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+### =====================================================
+### Get all temples
+### =====================================================
+
+GET {{host}}/temples
+apiKey: {{apiKey}}
+
+###
+
+### =====================================================
+### Get a single temple
+### =====================================================
+
+GET {{host}}/temples/999
+apiKey: {{apiKey}}
+
+###
+
+### =====================================================
+### Create a new temple
+### =====================================================
+
+POST {{host}}/temples
+apiKey: {{apiKey}}
+Content-Type: application/json
+
+{
+  "temple_id": 999,
+  "additionalInfo": false,
+  "name": "Test Temple",
+  "location": "Johannesburg, South Africa",
+  "dedicated": "12 July 2026"
+}
+
+###
+
+### =====================================================
+### Update a temple
+### =====================================================
+
+PUT {{host}}/temples/999
+apiKey: {{apiKey}}
+Content-Type: application/json
+
+{
+  "name": "Updated Test Temple"
+}
+
+###
+
+### =====================================================
+### Delete a temple
+### =====================================================
+
+DELETE {{host}}/temples/999
+apiKey: {{apiKey}}
+
+###
+
+### =====================================================
+### Delete all temples
+### WARNING: This deletes every temple in the database!
+### =====================================================
+
+DELETE {{host}}/temples
+apiKey: {{apiKey}}

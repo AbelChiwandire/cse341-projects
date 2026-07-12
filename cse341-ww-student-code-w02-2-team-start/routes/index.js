@@ -1,7 +1,8 @@
 const routes = require('express').Router();
 const temple = require('./temple');
+const apiKeyMiddleware = require('../middleware/apiKey');
 
-routes.use('/temples', temple);
+routes.use('/temples',apiKeyMiddleware, temple);
 routes.use(
   '/',
   (docData = (req, res) => {

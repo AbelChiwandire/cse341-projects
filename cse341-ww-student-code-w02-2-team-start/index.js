@@ -1,11 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const swaggerUI = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
+
 const app = express();
 
 app
   .use(cors())
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
+  .use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
   .use('/', require('./routes'));
 
 const db = require('./models');
