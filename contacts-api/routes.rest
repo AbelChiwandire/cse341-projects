@@ -1,5 +1,62 @@
-GET http://localhost:8080/contacts
+### =====================================================
+### Contacts API Tests
+### =====================================================
+
+@host = http://localhost:8080
+
+### =====================================================
+### Get all contacts
+### =====================================================
+
+GET {{host}}/contacts
 
 ###
 
-GET http://localhost:8080/contacts/6a4a4e52038caf56e938e7bd
+### =====================================================
+### Get contact by ID
+### =====================================================
+
+GET {{host}}/contacts/6a53eff75e142ac223c632b0
+
+###
+
+
+### =====================================================
+### Create a new contact
+### =====================================================
+
+POST {{host}}/contacts
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "favoriteColor": "blue",
+    "birthday": "1990-01-01"
+}
+
+###
+
+### =====================================================
+### Update an existing contact
+### =====================================================
+
+PUT {{host}}/contacts/6a53eff75e142ac223c632b0
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "favoriteColor": "green",
+    "birthday": "1990-01-01"
+}
+
+###
+
+### =====================================================
+### Delete a contact
+### =====================================================
+
+DELETE {{host}}/contacts/6a53eff75e142ac223c632b0
