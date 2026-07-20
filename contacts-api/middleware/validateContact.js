@@ -1,4 +1,4 @@
-const contactSchema = require('../schemas/contactSchema');
+const contactSchema = require('../validators/contactValidator');
 
 function validateContact(req, res, next) {
     const { error, value } = contactSchema.validate(req.body, { abortEarly: false });
