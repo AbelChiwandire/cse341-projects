@@ -1,0 +1,45 @@
+### GET ALL PROPERTIES
+GET http://localhost:8080/api/properties
+
+###
+
+### GET PROPERTY BY ID
+GET http://localhost:8080/api/properties/6a5e9dd1dd34156c508c2a85
+
+###
+
+### CREATE A PROPERTY
+POST http://localhost:8080/api/properties
+Content-Type: application/json
+
+{
+    "name": "Luveve Apartments",
+    "address": "446 Hlangabeza, Bulawayo",
+    "type": "Apartment",
+    "rent": 8500,
+    "rooms": 2,
+    "occupied": false,
+    "yearBuilt": 2015
+}
+
+###
+
+### UPDATE A PROPERTY 
+
+PUT http://localhost:8080/api/properties/6a5e9dd1dd34156c508c2a85
+Content-Type: application/json
+
+{
+    "name": "Luveve Apartments",
+    "address": "446 Hlangabeza, Bulawayo",
+    "type": "Apartment",
+    "rent": 9500,
+    "rooms": 2,
+    "occupied": false,
+    "yearBuilt": 2015
+}
+
+###
+
+### DELETE A PROPERTY
+DELETE http://localhost:8080/api/properties/6a5e9dd1dd34156c508c2a85
