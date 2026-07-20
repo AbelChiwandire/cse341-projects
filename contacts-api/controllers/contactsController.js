@@ -16,7 +16,7 @@ async function getAllContacts(req, res) {
     const contacts = await contactsModel.getAllContacts();
     res.status(200).json(contacts);
   } catch (error) {
-    console.log('Error retrieving contacts:', error);
+    console.error('Error retrieving contacts:', error);
     res.status(500).json({ error: 'Failed to retrieve contacts' });
   }
 }
@@ -37,6 +37,11 @@ async function getContactById(req, res) {
     }
   */
   const id = req.params.id;
+  if (!ObjectId.isValid(id)) {
+      return res.status(400).json({
+          error: "Invalid contact id"
+      });
+  }
   try {
     const contact = await contactsModel.getContactById(id);
     if (!contact) {
@@ -45,7 +50,7 @@ async function getContactById(req, res) {
       res.status(200).json(contact);
     }
   } catch (error) {
-    console.log('Error retrieving contact:', error);
+    console.error('Error retrieving contact:', error);
     res.status(500).json({ error: 'Failed to retrieve contact' });
   }
 }
@@ -74,7 +79,7 @@ async function createContact(req, res) {
     const newContactId = await contactsModel.createContact(contact);
     res.status(201).json(newContactId);
   } catch (error) {
-    console.log('Error creating contact:', error);
+    console.error('Error creating contact:', error);
     res.status(500).json({ error: 'Failed to create contact' });
   }
 }
@@ -95,6 +100,11 @@ async function updateContact(req, res) {
     }
   */
   const id = req.params.id;
+  if (!ObjectId.isValid(id)) {
+      return res.status(400).json({
+          error: "Invalid contact id"
+      });
+  }
   const updatedContact = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -105,13 +115,14 @@ async function updateContact(req, res) {
 
   try {
     const success = await contactsModel.updateContact(id, updatedContact);
-    if (success) {
-      res.status(200).json({ message: 'Contact updated successfully' });
-    } else {
+    if (!success) {
       res.status(404).json({ error: 'Contact not found' });
     }
+
+    res.status(200).json({ message: 'Contact updated successfully' });
+  
   } catch (error) {
-    console.log('Error updating contact:', error);
+    console.error('Error updating contact:', error);
     res.status(500).json({ error: 'Failed to update contact' });
   }
 }
@@ -132,15 +143,20 @@ async function deleteContact(req, res) {
     }
   */
   const id = req.params.id;
+  if (!ObjectId.isValid(id)) {
+      return res.status(400).json({
+          error: "Invalid contact id"
+      });
+  }
   try {
     const success = await contactsModel.deleteContact(id);
-    if (success) {
-      res.status(200).json({ message: 'Contact deleted successfully' });
-    } else {
+    if (!success) {
       res.status(404).json({ error: 'Contact not found' });
     }
+
+    res.status(200).json({ message: 'Contact deleted successfully' });
   } catch (error) {
-    console.log('Error deleting contact:', error);
+    console.error('Error deleting contact:', error);
     res.status(500).json({ error: 'Failed to delete contact' });
   }
 }
