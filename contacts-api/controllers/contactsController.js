@@ -1,4 +1,5 @@
 const contactsModel = require('../models/contactsModel');
+const { ObjectId } = require('mongodb');
 
 async function getAllContacts(req, res) {
   /*
