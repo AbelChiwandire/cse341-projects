@@ -43,3 +43,6 @@ Content-Type: application/json
 
 ### DELETE A PROPERTY
 DELETE http://localhost:8080/api/properties/6a5e9dd1dd34156c508c2a85
+
+###
+

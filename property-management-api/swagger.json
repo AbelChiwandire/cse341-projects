@@ -1,0 +1,422 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Property Management API",
+    "description": "This is a RESTful API that provides information about properties and their tenants.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/api",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/properties/": {
+      "get": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Get all properties",
+        "description": "Returns a list of all properties.",
+        "responses": {
+          "200": {
+            "description": "Properties found."
+          },
+          "500": {
+            "description": "Failed to retrieve properties."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Create property",
+        "description": "Creates a new property",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Property information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Luveve Apartments"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "446 Hlangabeza, Bulawayo"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Apartment"
+                },
+                "rent": {
+                  "type": "number",
+                  "example": 8500
+                },
+                "rooms": {
+                  "type": "number",
+                  "example": 2
+                },
+                "occupied": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "yearBuilt": {
+                  "type": "number",
+                  "example": 2015
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Property created successfully."
+          },
+          "400": {
+            "description": "Validation failed."
+          },
+          "500": {
+            "description": "Failed to create property."
+          }
+        }
+      }
+    },
+    "/properties/{id}": {
+      "get": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Get property by ID",
+        "description": "Returns a property by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Property ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Property found."
+          },
+          "400": {
+            "description": "Invalid property ID."
+          },
+          "404": {
+            "description": "Property not found."
+          },
+          "500": {
+            "description": "Failed to retrieve property."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Update property",
+        "description": "Updates an existing property.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Property ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated property information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Luveve Apartments"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "446 Hlangabeza, Bulawayo"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Apartment"
+                },
+                "rent": {
+                  "type": "number",
+                  "example": 12000
+                },
+                "rooms": {
+                  "type": "number",
+                  "example": 4
+                },
+                "occupied": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "yearBuilt": {
+                  "type": "number",
+                  "example": 2015
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Property updated successfully."
+          },
+          "400": {
+            "description": "Validation failed or invalid property ID."
+          },
+          "404": {
+            "description": "Property not found."
+          },
+          "500": {
+            "description": "Failed to update property."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Delete property",
+        "description": "Deletes an existing property.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Property ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Property deleted successfully."
+          },
+          "400": {
+            "description": "Invalid property ID."
+          },
+          "404": {
+            "description": "Property not found."
+          },
+          "500": {
+            "description": "Failed to delete property."
+          }
+        }
+      }
+    },
+    "/tenants/": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get all tenants",
+        "description": "Returns a list of all tenants.",
+        "responses": {
+          "200": {
+            "description": "Tenants found."
+          },
+          "500": {
+            "description": "Failed to retrieve tenants."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Create tenant",
+        "description": "Creates a new tenant",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Tenant information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "Abel"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Chiwandire"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "abel.chi@email.com"
+                },
+                "phoneNumber": {
+                  "type": "string",
+                  "example": "0821234567"
+                },
+                "moveInDate": {
+                  "type": "string",
+                  "example": "2025-01-15"
+                },
+                "propertyId": {
+                  "type": "string",
+                  "example": "6a5e982137a85022115d397b"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tenant created successfully."
+          },
+          "400": {
+            "description": "Validation failed."
+          },
+          "500": {
+            "description": "Failed to create tenant."
+          }
+        }
+      }
+    },
+    "/tenants/{id}": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get tenant by ID",
+        "description": "Returns a tenant by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Tenant ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tenant found."
+          },
+          "400": {
+            "description": "Invalid tenant ID."
+          },
+          "404": {
+            "description": "Tenant not found."
+          },
+          "500": {
+            "description": "Failed to retrieve tenant."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Update tenant",
+        "description": "Updates an existing tenant.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Tenant ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated tenant information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "Abel"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Chiwandire"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "abel.chi@email.com"
+                },
+                "phoneNumber": {
+                  "type": "string",
+                  "example": "0783782606"
+                },
+                "moveInDate": {
+                  "type": "string",
+                  "example": "2025-01-15"
+                },
+                "propertyId": {
+                  "type": "string",
+                  "example": "6a5e982137a85022115d397b"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tenant updated successfully."
+          },
+          "400": {
+            "description": "Validation failed or invalid tenant ID."
+          },
+          "404": {
+            "description": "Tenant not found."
+          },
+          "500": {
+            "description": "Failed to update tenant."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Delete tenant",
+        "description": "Deletes an existing tenant.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Tenant ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tenant deleted successfully."
+          },
+          "400": {
+            "description": "Invalid tenant ID."
+          },
+          "404": {
+            "description": "Tenant not found."
+          },
+          "500": {
+            "description": "Failed to delete tenant."
+          }
+        }
+      }
+    }
+  }
+}

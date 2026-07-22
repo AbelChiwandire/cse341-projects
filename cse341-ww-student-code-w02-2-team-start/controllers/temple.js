@@ -93,7 +93,7 @@ exports.update = (req, res) => {
     { temple_id: temple_id },
     req.body,
     {
-      new: true,
+      returnDocument: 'after',
       runValidators: true,
     }
   )
