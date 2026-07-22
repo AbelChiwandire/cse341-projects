@@ -5,9 +5,9 @@ const doc = {
     title: 'Property Management API',
     description: 'This is a RESTful API that provides information about properties and their tenants.',
   },
-    host: 'localhost:8080',
+    host: 'property-management-api-1ai4.onrender.com',
     basePath: '/api',
-    schemes: ['https', 'http'],
+    schemes: ['https'],
 };
 
 const outputFile = './swagger.json';

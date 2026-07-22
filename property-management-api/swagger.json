@@ -5,11 +5,10 @@
     "description": "This is a RESTful API that provides information about properties and their tenants.",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "property-management-api-1ai4.onrender.com",
   "basePath": "/api",
   "schemes": [
-    "https",
-    "http"
+    "https"
   ],
   "paths": {
     "/properties/": {
